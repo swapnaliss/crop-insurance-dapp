@@ -2,14 +2,14 @@ require("@nomicfoundation/hardhat-toolbox");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: "localhost",
+  defaultNetwork: "ganache",
   networks: {
-    localhost: {
-      url: "http://127.0.0.1:8545"
+    ganache: {
+      url: "http://localhost:8545"
     },
-    hardhat: {
-      // See its defaults
-    }
+  //   hardhat: {
+  //     // See its defaults
+  //   }
   },
   solidity: "0.8.17",
 };
