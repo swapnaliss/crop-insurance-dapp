@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-   
-    const response = await fetch('http://localhost:3000/api/signUp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-    console.log(response)
-    if(response.ok){
-      console.log("Login Successful")
-    }
-    else{
-      console.log("Not Logged in")
-    }
-
-    } catch (error) {
-      console.error(err);
-      setError('An error occurred. Please try again later.');
-    }
+    console.log('Email:', email);
+    console.log('Password:', password);
   };
 
   return (
@@ -34,15 +17,15 @@ function LoginForm() {
         <div className="mb-4">
           <label
             className="block font-medium mb-2 text-gray-700"
-            htmlFor="username"
+            htmlFor="email"
           >
-            Username
+            Email
           </label>
           <input
-            type="username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full border border-gray-400 p-2 rounded-lg"
           />
         </div>
