@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error,setError] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +17,11 @@ function LoginForm() {
     console.log(response)
     if(response.ok){
       console.log("Login Successful")
+      setError(false)
     }
     else{
       console.log("Not Logged in")
+      setError(true)
     }
 
     } catch (error) {
@@ -67,6 +70,7 @@ function LoginForm() {
         >
           Submit
         </button>
+        {error && <p className="text-red-600">User not found</p>}
       </form>
     </div>
   );
