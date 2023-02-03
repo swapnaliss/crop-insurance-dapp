@@ -19,7 +19,25 @@ export async function postUser(req,res){
             return res.status(200).json(data)
           })
     } catch (error) {
-        return res.status(200).json({data})
+        return res.status(404).json({data})
     }
 }
 
+export async function getUserByUserName(req,res){
+    try {
+        const {username , password} = req.body;
+
+        const users = await Users.findOne({username});
+        console.log(users)
+        if(users && password === users.password){
+            console.log('logged in')
+            res.status(200).json({users});
+
+        } else{
+            return res.status(404).json({error: "not logged in "})
+        } 
+        if(!users) return res.status(404).json({error: "User Not found"})
+    } catch (error) {
+        res.status(404).json({ error: "Error ..." });
+    }
+}
