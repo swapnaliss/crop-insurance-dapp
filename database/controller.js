@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import Users from "../model/user"
 
 export async function getUsers(req,res){
@@ -23,3 +22,4 @@ export async function postUser(req,res){
         return res.status(200).json({data})
     }
 }
+
