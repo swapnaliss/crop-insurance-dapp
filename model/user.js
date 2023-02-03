@@ -5,10 +5,10 @@ const userSchema = new Schema({
 
     username: String,
     password: String,
-    role: String
-    
+    role : String,
+    id: String
 })
 
-const Users = models.user || model('user', userSchema)
+const Users = models.Login || model('Login', userSchema)
 
 export default Users;
