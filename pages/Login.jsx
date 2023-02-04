@@ -1,33 +1,36 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useUserContext } from './provider/UserProvider'
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error,setError] = useState(false);
-  const router = useRouter();
+  const [error, setError] = useState(false);
+  const { login } = useUserContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-   
-    const response = await fetch('http://localhost:3000/api/signUp', {
+
+      const response = await fetch('http://localhost:3000/api/signUp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
       });
-    console.log(response)
-    if(response.ok){
-      console.log("Login Successful")
-      setError(false)
-      router.push('/');
-    }
-    else{
-      console.log("Not Logged in")
-      setError(true)
-    }
+      console.log(response)
+      if (response.ok) {
+        console.log("Login Successful")
+        const userData = await response.json()
+        login(userData);
+        setError(false)
+      }
+      else {
+        console.log("Not Logged in")
+        setError(true)
+      }
 
     } catch (error) {
-      console.error(err);
+      console.error(error);
       setError('An error occurred. Please try again later.');
     }
   };
