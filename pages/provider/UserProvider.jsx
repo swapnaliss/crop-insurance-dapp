@@ -27,6 +27,7 @@ const UserProvider = ({children}) => {
     const handleLogout = () => {
         localStorage.removeItem('insurance-login');
         setUser(null);
+        router.push('/Login');
     };
 
     return (

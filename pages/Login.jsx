@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useRouter } from 'next/router';
 import { useUserContext } from './provider/UserProvider'
 
@@ -7,6 +7,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const { login } = useUserContext();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ function LoginForm() {
         const userData = await response.json()
         login(userData);
         setError(false)
+        router.push('/');
       }
       else {
         console.log("Not Logged in")
@@ -35,6 +37,13 @@ function LoginForm() {
     }
   };
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('insurance-login'));
+    if (userData) {
+        router.push('/');
+    }
+}, [router]);
+
   return (
     <div className="flex items-center justify-center h-screen">
       <form onSubmit={handleSubmit} className="bg-white p-4 rounded-lg shadow-md w-full sm:w-1/3">
@@ -44,7 +53,7 @@ function LoginForm() {
             className="block font-medium mb-2 text-gray-700"
             htmlFor="username"
           >
-            Email
+            Username
           </label>
           <input
             type="username"
