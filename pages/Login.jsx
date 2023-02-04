@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
+import { useRouter } from 'next/router';
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error,setError] = useState(false)
+  const [error,setError] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ function LoginForm() {
     if(response.ok){
       console.log("Login Successful")
       setError(false)
+      router.push('/');
     }
     else{
       console.log("Not Logged in")
