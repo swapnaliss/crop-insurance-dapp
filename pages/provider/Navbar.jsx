@@ -1,10 +1,10 @@
 import React from 'react';
 import { useWalletContext } from './WalletProvider'
-
+import { useUserContext } from './UserProvider'
 
 const Navbar = () => {
   const { metaMask, connectToMetaMask } = useWalletContext();
-
+  const {handleLogout} = useUserContext();
   return (
     <nav className="bg-indigo-500 p-4 flex justify-between items-center">
       <div className="text-white font-medium">
@@ -12,7 +12,7 @@ const Navbar = () => {
         <a href="#" className="ml-4">About Us</a>
       </div>
 
-      <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white">
+      <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white" onClick={handleLogout}>
         Logout
       </button>
 
