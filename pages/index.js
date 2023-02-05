@@ -1,13 +1,17 @@
 
 import styles from '../styles/Home.module.css'
-
+import Farmer from './modules/Farmer'
+import Insurer from './modules/Insurer'
+import {useUserContext} from './provider/UserProvider'
 export default function Home() {
+  const { user } = useUserContext();
+  console.log(user)
   return (
     <div className={styles.container}>
-     
-     <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+  
+    { user?.role === "farmer" ?  <Farmer /> 
+    :   user?.role === "insurer" ?<Insurer /> : null
+   }
     </div>
   )
 }
