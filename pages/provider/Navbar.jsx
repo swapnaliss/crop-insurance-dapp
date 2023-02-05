@@ -12,6 +12,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setDisplayedUser(user);
+    console.log(user)
   }, [user]);
 
   if (pathname === '/login') {
@@ -24,11 +25,13 @@ const Navbar = () => {
         <a href="#" className="ml-4">About Us</a>
       </div>
       <div>
-        <span className="text-sm font-medium mr-2">Welcome, {displayedUser && displayedUser.username}</span>
+        <span className="text-sm font-medium mr-2">Welcome {displayedUser && displayedUser.username}</span>
 
-        <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white" onClick={handleLogout}>
+        {user && 
+          <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white" onClick={handleLogout}>
           Logout
-        </button>
+          </button>
+         }
         <button className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600" onClick={connectToMetaMask}>
           {metaMask.isConnected ? "Wallet connected" : "Connect wallet"}
         </button>
