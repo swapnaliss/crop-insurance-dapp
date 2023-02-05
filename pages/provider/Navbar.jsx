@@ -31,9 +31,15 @@ const Navbar = () => {
             Logout
           </button>
           :
-          <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white" onClick={() => router.push("/Login")}>
-            Login
-          </button>
+          <>
+            <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white" onClick={() => router.push("/Login")}>
+              Login
+            </button>
+
+            <button className="bg-white text-indigo-500 p-2 rounded-lg hover:bg-indigo-500 hover:text-white ml-4 mr-4" >
+              Sign UP
+            </button>
+          </>
         }
         <button className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600" onClick={connectToMetaMask}>
           {metaMask.isConnected ? "Wallet connected" : "Connect wallet"}
