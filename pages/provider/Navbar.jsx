@@ -12,7 +12,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setDisplayedUser(user);
-    console.log(user)
   }, [user]);
 
   if (pathname === '/login') {
