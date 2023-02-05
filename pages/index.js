@@ -10,7 +10,7 @@ export default function Home() {
     <div className={styles.container}>
   
     { user?.role === "farmer" ?  <Farmer /> 
-    :   <Insurer />
+    :   user?.role === "insurer" ?<Insurer /> : null
    }
     </div>
   )
