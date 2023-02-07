@@ -5,7 +5,6 @@ import Insurer from './modules/Insurer'
 import {useUserContext} from './provider/UserProvider'
 export default function Home() {
   const { user } = useUserContext();
-  console.log(user)
   return (
     <div className={styles.container}>
   
