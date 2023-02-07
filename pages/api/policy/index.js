@@ -1,14 +1,17 @@
-import { createPolicy } from "../../../database/createPolicy.controller";
+import { createPolicy, getPolicies } from "../../../database/createPolicy.controller";
 
-export default async function handler(req,res){
-    const {method} = req
+export default async function handler(req, res) {
+    const { method } = req
 
-    switch(method){
+    switch (method) {
+        case 'GET':
+            getPolicies(req, res)
+            break;
         case 'POST':
-            createPolicy(req,res);
+            createPolicy(req, res);
             break;
         default:
-            res.setHeader('Allow',['POST']);
+            res.setHeader('Allow', ['POST']);
             res.status(405).end(`Method ${method} Not Allowed`)
             break;
     }
