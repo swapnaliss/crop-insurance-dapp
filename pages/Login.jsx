@@ -51,8 +51,7 @@ function LoginForm() {
         <div className="mb-4">
           <label
             className="block font-medium mb-2 text-gray-700"
-            htmlFor="username"
-          >
+            htmlFor="username">
             Username
           </label>
           <input
@@ -66,8 +65,7 @@ function LoginForm() {
         <div className="mb-4">
           <label
             className="block font-medium mb-2 text-gray-700"
-            htmlFor="password"
-          >
+            htmlFor="password">
             Password
           </label>
           <input
@@ -75,13 +73,11 @@ function LoginForm() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-gray-400 p-2 rounded-lg"
-          />
+            className="w-full border border-gray-400 p-2 rounded-lg"/>
         </div>
         <button
           type="submit"
-          className="bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600"
-        >
+          className="bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600" >
           Submit
         </button>
         {error && <p className="text-red-600">User not found</p>}

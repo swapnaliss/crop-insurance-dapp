@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import CreatePolicy from '../components/CreatePolicy'
 import { useInsurer } from '../hooks/useInsurer';
 
