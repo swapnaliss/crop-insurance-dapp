@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Card = ({ policyName, description, period, coveredAmount, premium }) => {
+const Card = ({ policyName, description, period, coveredAmount, premium, isFarmer = false }) => {
+    console.log(isFarmer)
     return (
         <div className="p-6 bg-white bg-gray-200 m-2 rounded-lg shadow-md">
             <h3 className="text-lg font-medium mb-2">{policyName}</h3>
@@ -19,6 +20,11 @@ const Card = ({ policyName, description, period, coveredAmount, premium }) => {
                 <p>Covered Amount</p>
                 <p className='ml-4'>{coveredAmount}</p>
             </div>
+            {isFarmer &&
+                <button className="bg-indigo-600 text-white py-2 px-4 rounded-lg">
+                    Apply
+                </button>
+            }
         </div>
     )
 }
