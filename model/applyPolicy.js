@@ -5,9 +5,10 @@ const policySchema = new Schema({
     farmerId: Schema.Types.ObjectId,
     policyId: Schema.Types.ObjectId,
     cropName: String,
-    accepted: Boolean,
+    isApproved: Boolean,
+    isApplied: Boolean,
 })
 
-const ApplyPolicy = models.ap || model('ap', policySchema)
+const ApplyPolicy = models.appp || model('appp', policySchema)
 
 export default ApplyPolicy;
