@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFarmer } from '../hooks/useFarmer.js';
 
-const Card = ({ policyName, description, period, coveredAmount, premium, isFarmer = false }) => {
-    const { cropName, setCropName, handleApplyPolicy } = useFarmer();
+const Card = ({ policyName, description, period, coveredAmount, premium, isFarmer = false, policy }) => {
+    const { cropName, setCropName, handleApplyPolicy, isError, isSuccess } = useFarmer();
 
     return (
         <div className="p-6 bg-white bg-gray-200 m-2 rounded-lg shadow-md">
@@ -24,7 +24,8 @@ const Card = ({ policyName, description, period, coveredAmount, premium, isFarme
             </div>
             {isFarmer &&
 
-                <form className="grid lg:grid-cols-2 w-4/2 gap-4" onSubmit={handleApplyPolicy}>
+                <form className="grid lg:grid-cols-2 w-4/2 gap-4"
+                    onSubmit={(e) => handleApplyPolicy({ e, policy })}>
                     <div className="input-type">
                         <input type="text"
                             name="Crop Name"
@@ -41,6 +42,8 @@ const Card = ({ policyName, description, period, coveredAmount, premium, isFarme
                     </button>
                 </form>
             }
+            {isError ? <p className="text-red-600">Unable to apply policy</p> : null}
+            {isSuccess ? <p className="text-green-600">Successfully applied</p> : null}
         </div>
     )
 }

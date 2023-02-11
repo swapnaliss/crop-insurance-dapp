@@ -29,6 +29,7 @@ export default function Home() {
                 coveredAmount={policy.coveredAmount}
                 premium={policy.premium}
                 isFarmer={user?.role === "insurer" ? false : true}
+                policy={policy}
               />
             </div>
           )
