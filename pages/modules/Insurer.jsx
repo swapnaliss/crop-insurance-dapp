@@ -1,5 +1,6 @@
 import CreatePolicy from '../components/CreatePolicy'
 import { useInsurer } from '../hooks/useInsurer';
+import Card from '../components/Card';
 
 const Insurer = () => {
   const { formVisible, handleToggleForm } = useInsurer();
@@ -21,6 +22,21 @@ const Insurer = () => {
           )
           : null
       }
+
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-1/4">
+          <Card />
+        </div>
+        <div className="w-full md:w-1/4">
+          <Card />
+        </div>
+        <div className="w-full md:w-1/4">
+          <Card />
+        </div>
+        <div className="w-full md:w-1/4">
+          <Card />
+        </div>
+      </div>
     </div>
   )
 }
