@@ -1,7 +1,9 @@
 import React from 'react'
+import { useFarmer } from '../hooks/useFarmer.js';
 
 const Card = ({ policyName, description, period, coveredAmount, premium, isFarmer = false }) => {
-    console.log(isFarmer)
+    const { cropName, setCropName, handleApplyPolicy } = useFarmer();
+
     return (
         <div className="p-6 bg-white bg-gray-200 m-2 rounded-lg shadow-md">
             <h3 className="text-lg font-medium mb-2">{policyName}</h3>
@@ -21,9 +23,23 @@ const Card = ({ policyName, description, period, coveredAmount, premium, isFarme
                 <p className='ml-4'>{coveredAmount}</p>
             </div>
             {isFarmer &&
-                <button className="bg-indigo-600 text-white py-2 px-4 rounded-lg">
-                    Apply
-                </button>
+
+                <form className="grid lg:grid-cols-2 w-4/2 gap-4" onSubmit={handleApplyPolicy}>
+                    <div className="input-type">
+                        <input type="text"
+                            name="Crop Name"
+                            id="cropName"
+                            value={cropName}
+                            className="border w-full px-5 py-3 focus:outline-none rounded-md"
+                            placeholder="Crop Name"
+                            onChange={(e) => setCropName(e.target.value)}
+                        />
+                    </div>
+                    <button className={`${cropName === '' ? 'bg-indigo-300' : 'bg-indigo-600'} text-white py-2 px-4 rounded-lg`}
+                        disabled={cropName === '' ? true : false}>
+                        Apply
+                    </button>
+                </form>
             }
         </div>
     )

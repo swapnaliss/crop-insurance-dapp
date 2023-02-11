@@ -15,7 +15,6 @@ export async function createPolicy(req,res){
 export async function getPolicies(req,res){
     try {
         const policies = await Policy.find({});
-        console.log(policies);
         if(!policies)return res.status(404).json({error:"Data not found"})
         res.status(200).json( policies );
     } catch (error) {
