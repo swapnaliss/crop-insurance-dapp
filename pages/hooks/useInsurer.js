@@ -7,6 +7,8 @@ import { useUserContext } from '../provider/UserProvider';
 export function useInsurer() {
     const [formVisible, setFormVisible] = useState(false);
     const [policiesFromMogno, setPoliciesFromMogno] = useState([]);
+    const [policiesToBeApplied, setPoliciesToBeApplied] = useState([]);
+    const [appliedPolices, setAppliedPolices] = useState([]);
     const { data } = useQuery('policies', getAllPoliciesFromMongo);
     const { getAppliedPolices } = useFarmer();
     const { user } = useUserContext();
@@ -28,12 +30,16 @@ export function useInsurer() {
                     return !appliedPolicies?.some(appliedPolicy => appliedPolicy.policyId === createdPolicy._id);
                 });
 
-                const actualData = user?.role === 'farmer' ? availablePolicies : createdPolicies;
-
-                setPoliciesFromMogno(actualData);
+                const notAvailablePolicies = createdPolicies.filter(createdPolicy => {
+                    return appliedPolicies?.some(appliedPolicy => appliedPolicy.policyId === createdPolicy._id);
+                });
+                console.log(notAvailablePolicies);
+                setAppliedPolices(notAvailablePolicies);
+                setPoliciesToBeApplied(availablePolicies);
+                setPoliciesFromMogno(createdPolicies);
             }
         },
-        [data, getAppliedPolices, user?.role],
+        [data, getAppliedPolices],
     );
 
     useEffect(() => {
@@ -41,5 +47,5 @@ export function useInsurer() {
     }, [getPolicesFromMongo])
 
 
-    return { formVisible, handleToggleForm, policiesFromMogno, getPolicesFromMongo }
+    return { formVisible, handleToggleForm, policiesFromMogno, getPolicesFromMongo, policiesToBeApplied, appliedPolices }
 }

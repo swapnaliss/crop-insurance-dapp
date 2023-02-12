@@ -8,33 +8,16 @@ import Card from './components/Card';
 
 export default function Home() {
   const { user } = useUserContext();
-  const { policiesFromMogno } = useInsurer();
+  const { policiesFromMogno, policiesToBeApplied, appliedPolices } = useInsurer();
 
   return (
     <div className={styles.container}>
 
-      {user?.role === "farmer" ? <Farmer />
-        : user?.role === "insurer" ? <Insurer /> : null
+      {user?.role === "farmer" ? <Farmer policiesToBeApplied={policiesToBeApplied} appliedPolices={appliedPolices}/>
+        : user?.role === "insurer" ? <Insurer policiesFromMogno={policiesFromMogno}/> : null
       }
 
-      <div className="flex flex-wrap">
-        {policiesFromMogno && policiesFromMogno.map((policy, index) => {
-          return (
-            <div key={index} className="w-full md:w-1/4">
-              <Card
-                policyName={policy.policyName}
-                id={policy._id}
-                description={policy.description}
-                period={policy.period}
-                coveredAmount={policy.coveredAmount}
-                premium={policy.premium}
-                isFarmer={user?.role === "insurer" ? false : true}
-                policy={policy}
-              />
-            </div>
-          )
-        })}
-      </div>
+      
     </div>
   )
 }
