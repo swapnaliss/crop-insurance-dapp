@@ -31,10 +31,9 @@ const ApplicationReceivedTable = ({ applicationsReceived }) => {
                                     <td className="px-4 py-2 text-xs" >
                                         {policy.isApproved
                                             ? (
-                                                <span className="text-blue-600 px-5 py-1 rounded-full"
-                                                    onClick={(e) => handleApproveOrRejectPolicy(e, policy._id, false)}
+                                                <span className="text-gray-600 px-5 py-1 rounded-full"
                                                 >
-                                                    Reject
+                                                    Approved
                                                 </span>
                                             )
                                             : (
