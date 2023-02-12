@@ -7,8 +7,9 @@ const policySchema = new Schema({
     cropName: String,
     isApproved: Boolean,
     isApplied: Boolean,
+    status: String
 })
 
-const ApplyPolicy = models.appp || model('appp', policySchema)
+const ApplyPolicy = models.apppp || model('apppp', policySchema)
 
 export default ApplyPolicy;

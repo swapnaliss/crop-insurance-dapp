@@ -32,7 +32,7 @@ export function useFarmer() {
         [formVisible],
     );
 
-    const handleApplyPolicy = async ({ e, policy, isApproved = false, isApplied = false }) => {
+    const handleApplyPolicy = async ({ e, policy, isApproved = false, isApplied = true, status = 'in-review' }) => {
         e.preventDefault();
         if (user) {
             try {
@@ -44,7 +44,8 @@ export function useFarmer() {
                         policyId: policy._id,
                         cropName,
                         isApproved,
-                        isApplied
+                        isApplied,
+                        status
                     })
                 });
                 console.log(response)

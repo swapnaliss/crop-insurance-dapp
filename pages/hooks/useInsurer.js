@@ -33,8 +33,19 @@ export function useInsurer() {
                 const notAvailablePolicies = createdPolicies.filter(createdPolicy => {
                     return appliedPolicies?.some(appliedPolicy => appliedPolicy.policyId === createdPolicy._id);
                 });
-                console.log(notAvailablePolicies);
-                setAppliedPolices(notAvailablePolicies);
+
+                const policiesWithAppliedData = notAvailablePolicies.map(policy => {
+                    const appliedData = appliedPolicies.find(appliedPolicy => appliedPolicy.policyId === policy._id);
+                    return {
+                        ...policy,
+                        isApproved: appliedData.isApproved,
+                        isApplied: appliedData.isApplied,
+                        cropName: appliedData.cropName,
+                        status: appliedData.status
+                    };
+                });
+
+                setAppliedPolices(policiesWithAppliedData);
                 setPoliciesToBeApplied(availablePolicies);
                 setPoliciesFromMogno(createdPolicies);
             }
