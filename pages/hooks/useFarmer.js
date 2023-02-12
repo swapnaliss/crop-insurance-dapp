@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { useUserContext } from '../provider/UserProvider';
 import { useRouter } from 'next/router';
+import { getAllAppliedPoliciesFromMongo } from '../../database/helper/applyPolicy.helper';
 
 export function useFarmer() {
     const [formVisible, setFormVisible] = useState(false);
@@ -10,7 +11,19 @@ export function useFarmer() {
     const [isSuccess, setIsSuccess] = useState(false);
     const { user } = useUserContext();
     const router = useRouter();
+    const { data } = useQuery('AppliedPolicies', getAllAppliedPoliciesFromMongo);
 
+    const getAppliedPolices = useCallback(
+        () => {
+            if (user && data) {
+                const filterAppliedPolicesByFarmer = data.filter((policy) =>
+                    policy.farmerId === user._id
+                )
+                return filterAppliedPolicesByFarmer;
+            }
+        },
+        [data, user],
+    );
 
     const handleToggleForm = useCallback(
         () => {
@@ -70,6 +83,7 @@ export function useFarmer() {
         setCropName,
         handleApplyPolicy,
         isError,
-        isSuccess
+        isSuccess,
+        getAppliedPolices
     }
 }

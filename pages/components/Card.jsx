@@ -10,15 +10,15 @@ const Card = ({ policyName, description, period, coveredAmount, premium, isFarme
             <p className="text-gray-600 mb-2">
                 {description}
             </p>
-            <div class="py-3 border-t border-gray-300 text-gray-600 flex">
+            <div className="py-3 border-t border-gray-300 text-gray-600 flex">
                 <p>Period</p>
                 <p className='ml-4'>{period}</p>
             </div>
-            <div class="text-gray-600 flex">
+            <div className="text-gray-600 flex">
                 <p>Premium</p>
                 <p className='ml-4'>{premium}</p>
             </div>
-            <div class="py-2 text-gray-600 flex">
+            <div className="py-2 text-gray-600 flex">
                 <p>Covered Amount</p>
                 <p className='ml-4'>{coveredAmount}</p>
             </div>
