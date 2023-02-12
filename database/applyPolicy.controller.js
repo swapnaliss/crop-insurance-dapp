@@ -21,3 +21,18 @@ export async function getAppliedPolicyData(req, res) {
         res.status(404).json({ error: "Error while Fetching Data" })
     }
 }
+
+export async function approveAppliedPolicy(req, res) {
+    try {
+        const { _id } = req.query;
+        const formData = req.body;
+
+        if (_id && formData) {
+            const data = await ApplyPolicy.findByIdAndUpdate(_id, formData);
+            return res.status(200).json(data);
+        }
+        res.status(404).json({ error: "Id not selected" });
+    } catch (error) {
+        res.status(404).json({ error: "Error while updating data" });
+    }
+}

@@ -3,7 +3,7 @@ import { useFarmer } from '../hooks/useFarmer.js';
 
 const Card = ({ policyName, description, period, coveredAmount, premium, isFarmer = false, policy }) => {
     const { cropName, setCropName, handleApplyPolicy, isError, isSuccess } = useFarmer();
-    
+
     return (
         <div className="p-6 bg-white bg-gray-200 m-2 rounded-lg shadow-md">
             <h3 className="text-lg font-medium mb-2">{policyName}</h3>
@@ -27,13 +27,9 @@ const Card = ({ policyName, description, period, coveredAmount, premium, isFarme
                     {policy.isApplied
                         ? (
                             <>
-                                {policy.status === "in-review" &&
-                                    (
-                                        <>
-                                            <p className="text-gray-600">Status : In Review</p>
-                                        </>
-                                    )
-                                }
+
+                                <p className="text-gray-600">Status : {policy.status}</p>
+
                                 {policy.isApproved &&
                                     (
                                         <>

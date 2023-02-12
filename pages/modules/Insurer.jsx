@@ -6,7 +6,7 @@ import { useUserContext } from '../provider/UserProvider';
 import ApplicationReceivedTable from '../components/ApplicationReceivedTable';
 
 const Insurer = ({ policiesFromMogno }) => {
-  const { formVisible, handleToggleForm } = useInsurer();
+  const { formVisible, handleToggleForm, applicationsReceived } = useInsurer();
   const [activeTab, setActiveTab] = useState("all-policies");
   const { user } = useUserContext();
 
@@ -70,7 +70,7 @@ const Insurer = ({ policiesFromMogno }) => {
         ) :
         (
           <div className="application-recived mt-6">
-            <ApplicationReceivedTable />
+            <ApplicationReceivedTable applicationsReceived={applicationsReceived}/>
           </div>
         )
       }
