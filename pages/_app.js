@@ -3,10 +3,13 @@ import Navbar from './provider/Navbar'
 import { WalletProvider } from './provider/WalletProvider'
 import { MetaMaskProvider } from 'metamask-react'
 import UserProvider from './provider/UserProvider'
-function MyApp({ Component, pageProps }) {
+import { QueryClientProvider, QueryClient } from 'react-query';
 
+const queryClient = new QueryClient();
+
+function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <MetaMaskProvider>
         <WalletProvider>
           <UserProvider>
@@ -17,7 +20,7 @@ function MyApp({ Component, pageProps }) {
           </UserProvider>
         </WalletProvider>
       </MetaMaskProvider>
-    </div>
+    </QueryClientProvider>
   )
 }
 

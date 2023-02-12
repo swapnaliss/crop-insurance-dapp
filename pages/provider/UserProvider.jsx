@@ -19,7 +19,8 @@ const UserProvider = ({children}) => {
             {
                 username : userData.users.username,
                 role : userData.users.role,
-                id : userData.users.id
+                id : userData.users.id,
+                _id : userData.users._id
             }
             ));
     }
