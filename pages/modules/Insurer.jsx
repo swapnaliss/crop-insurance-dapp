@@ -3,6 +3,7 @@ import CreatePolicy from '../components/CreatePolicy'
 import { useInsurer } from '../hooks/useInsurer';
 import Card from '../components/Card';
 import { useUserContext } from '../provider/UserProvider';
+import ApplicationReceivedTable from '../components/ApplicationReceivedTable';
 
 const Insurer = ({ policiesFromMogno }) => {
   const { formVisible, handleToggleForm } = useInsurer();
@@ -22,7 +23,7 @@ const Insurer = ({ policiesFromMogno }) => {
           className={`tab-item py-2 px-4 rounded-md ${activeTab === "application-recived" ? "bg-indigo-500 text-white" : "bg-white text-indigo-500"}`}
           onClick={() => setActiveTab("application-recived")}
         >
-          Application Recived
+          Application Received
         </button>
       </div>
 
@@ -68,8 +69,8 @@ const Insurer = ({ policiesFromMogno }) => {
           </div>
         ) :
         (
-          <div className="application-recived">
-
+          <div className="application-recived mt-6">
+            <ApplicationReceivedTable />
           </div>
         )
       }
